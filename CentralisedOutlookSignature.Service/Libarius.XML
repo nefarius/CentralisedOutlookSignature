@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Libarius</name>
+    </assembly>
+    <members>
+        <member name="M:Libarius.Active_Directory.AdHelper.GetGroups(System.String)">
+            <summary>
+                Returns a list of groups the supplied user is member of.
+            </summary>
+            <param name="userName">Username</param>
+            <returns>A list of groups on success, otherwise an empty list</returns>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.IsUserInGroup(System.Guid)">
+            <summary>
+                Checks if the current user is member of the supplied group.
+            </summary>
+            <param name="gUid">The groups unique identifier.</param>
+            <returns>True if the user is a mamber, false otherwise.</returns>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.IsUserInGroup(System.String)">
+            <summary>
+                Checks if the current user is member of the supplied group.
+            </summary>
+            <param name="gUid">The groups unique identifier.</param>
+            <returns>True if the user is a mamber, false otherwise.</returns>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.IsUserInGroup(System.String,System.String)">
+            <summary>
+                Checks if the provided user is member of the supplied group.
+            </summary>
+            <param name="userName">The logon name of the user.</param>
+            <param name="gUid">The groups unique identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.IsUserInGroup(System.String,System.Guid)">
+            <summary>
+                Checks if the provided user is member of the supplied group.
+            </summary>
+            <param name="userName">The logon name of the user.</param>
+            <param name="gUid">The groups unique identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.GetObjectDistinguishedName(Libarius.Active_Directory.AdHelper.ObjectClass,Libarius.Active_Directory.AdHelper.ReturnType,System.String,System.String)">
+            <summary>
+                Searches for provided object in directory and resolves it to distinguished name.
+            </summary>
+            <param name="objectCls">The object class to search for.</param>
+            <param name="returnValue">The format of the returned string.</param>
+            <param name="objectName">The common name of the object to search for.</param>
+            <param name="ldapDomain">The LDAP domain to search in.</param>
+            <returns></returns>
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.ConvertDNtoGuid(System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.ConvertGuidToOctectString(System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.ConvertGuidToDn(System.String)">
+            <remarks>Currently broken!</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.EnableUserAccount(System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.DisableUserAccount(System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.Unlock(System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.ResetPassword(System.String,System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.CreateUserAccount(System.String,System.String,System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.AttributeValuesMultiString(System.String,System.String,System.Collections.Generic.List{System.String},System.Boolean)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.AttributeValuesSingleString(System.String,System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.Groups(System.String,System.Boolean)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="M:Libarius.Active_Directory.AdHelper.AddToGroup(System.String,System.String)">
+            <remarks>http://www.codeproject.com/Articles/18102/Howto-Almost-Everything-In-Active-Directory-via-C</remarks>
+        </member>
+        <member name="P:Libarius.Active_Directory.AdHelper.FullName">
+            <summary>
+                Gets the current users full name from the domains directory.
+            </summary>
+        </member>
+        <member name="P:Libarius.Active_Directory.AdHelper.MachineDomain">
+            <summary>
+                Returns the current machines domain name.
+            </summary>
+        </member>
+        <member name="P:Libarius.Active_Directory.AdHelper.MachineSite">
+            <summary>
+                Returns the current machines site name.
+            </summary>
+        </member>
+        <member name="P:Libarius.Active_Directory.AdHelper.IsInActiveDirectory">
+            <summary>
+                Primitive check if current session is logged on to a domain.
+            </summary>
+        </member>
+        <member name="T:Libarius.Logging.EventLogExtensions">
+            <summary>
+                Provides extension methods for the EventLog class.
+            </summary>
+        </member>
+        <member name="M:Libarius.Logging.EventLogExtensions.WriteInformation(System.Diagnostics.EventLog,System.String,System.Object[])">
+            <summary>
+                Writes an information to the event log.
+            </summary>
+            <param name="log">The event log to extend.</param>
+            <param name="format">The format string of the message.</param>
+            <param name="objs">Additional optional parameters of the message.</param>
+        </member>
+        <member name="M:Libarius.Logging.EventLogExtensions.WriteError(System.Diagnostics.EventLog,System.String,System.Object[])">
+            <summary>
+                Writes an error to the event log.
+            </summary>
+            <param name="log">The event log to extend.</param>
+            <param name="format">The format string of the message.</param>
+            <param name="objs">Additional optional parameters of the message.</param>
+        </member>
+        <member name="M:Libarius.Logging.EventLogExtensions.WriteWarning(System.Diagnostics.EventLog,System.String,System.Object[])">
+            <summary>
+                Writes a warning to the event log.
+            </summary>
+            <param name="log">The event log to extend.</param>
+            <param name="format">The format string of the message.</param>
+            <param name="objs">Additional optional parameters of the message.</param>
+        </member>
+        <member name="P:Libarius.Network.IpHelper.PrivateIpAddress">
+            <summary>
+                Returns the private IP address from the first adapter found on the client machine.
+            </summary>
+        </member>
+        <member name="P:Libarius.Network.IpHelper.PublicIpAddress">
+            <summary>
+                Queries checkip.dyndns.org to retrieve the public visible IP address.
+            </summary>
+        </member>
+        <member name="P:Libarius.Network.IpHelper.DefaultGatewayAdresses">
+            <summary>
+                Returns the default gateway.
+            </summary>
+        </member>
+        <member name="P:Libarius.Network.IpHelper.DhcpServerAddresses">
+            <summary>
+                Returns the active connections dhcp server addresses.
+            </summary>
+        </member>
+        <member name="P:Libarius.Network.IpHelper.DnsServerAddresses">
+            <summary>
+                Returns the active connections dns server addresses.
+            </summary>
+        </member>
+        <member name="M:Libarius.Network.UPnP.Discover">
+            <summary>
+                Sends out a NOTIFY request and waits for an answer.
+            </summary>
+            <returns>Returns true on success and false if no answer was received.</returns>
+        </member>
+        <member name="M:Libarius.Network.UPnP.ForwardPort(System.Int32,System.Net.Sockets.ProtocolType,System.String)">
+            <summary>
+                Requests the UPnP device to forward a specific port to the current hosts local IP address.
+            </summary>
+            <param name="port">Number of external (e.g. WAN) port to forward.</param>
+            <param name="protocol">Desired protocol.</param>
+            <param name="description">Description the device should name this new forwarding rule.</param>
+        </member>
+        <member name="M:Libarius.Network.UPnP.ForwardPort(System.Int32,System.Int32,System.Net.Sockets.ProtocolType,System.String)">
+            <summary>
+                Requests the UPnP device to forward a specific external port to a defined internal port at the current hosts local
+                IP address.
+            </summary>
+            <param name="externalPort">Number of external (e.g. WAN) port to forward.</param>
+            <param name="localPort">Number of local port to get forwarded to.</param>
+            <param name="protocol">Desired protocol.</param>
+            <param name="description">Description the device should name this new forwarding rule.</param>
+        </member>
+        <member name="M:Libarius.Network.UPnP.ForwardPort(System.Int32,System.Int32,System.Net.IPAddress,System.Net.Sockets.ProtocolType,System.String)">
+            <summary>
+                Requests the UPnP device to forward a specific port to a defined internal IP address and port number.
+            </summary>
+            <param name="externalPort">Number of external (e.g. WAN) port to forward.</param>
+            <param name="localPort">Number of local port to get forwarded to.</param>
+            <param name="localIp">Desired target hosts local IP address.</param>
+            <param name="protocol">Desired protocol.</param>
+            <param name="description">Description the device should name this new forwarding rule.</param>
+        </member>
+        <member name="M:Libarius.Network.UPnP.DeleteForwardingRule(System.Int32,System.Net.Sockets.ProtocolType)">
+            <summary>
+                Requests the UPnP device to delete a specified forwarded external port.
+            </summary>
+            <param name="port">Number of external (e.g. WAN) port which is currently forwarded.</param>
+            <param name="protocol">The protocol the target forwarding is registered under.</param>
+        </member>
+        <member name="P:Libarius.Network.UPnP.ExternalIp">
+            <summary>
+                Returns the WAN IP address the UPnP device discovered. This doesn't have to be the public IP address.
+            </summary>
+        </member>
+        <member name="P:Libarius.System.SystemHelper.TeamViewerId">
+            <summary>
+                Gets the TeamViewer ID if installed.
+            </summary>
+        </member>
+        <member name="P:Libarius.System.SystemHelper.ApplicationName">
+            <summary>
+                Gets the current assemblys name without path and extension.
+            </summary>
+        </member>
+        <member name="P:Libarius.System.SystemHelper.LocalAppDataPath">
+            <summary>
+                Gets the current users local application data path.
+            </summary>
+        </member>
+        <member name="P:Libarius.System.SystemHelper.UpTime">
+            <summary>
+                Returns the passed time span since last reboot.
+            </summary>
+        </member>
+        <member name="P:Libarius.System.SystemHelper.OsFriendlyName">
+            <summary>
+                Returns the friendly OS name.
+                <remarks>http://stackoverflow.com/questions/577634/how-to-get-the-friendly-os-version-name</remarks>
+            </summary>
+        </member>
+        <member name="T:Libarius.WPF.WindowSettings">
+            <summary>
+                Persists a Window's Size, Location and WindowState to UserScopeSettings
+                <remarks>http://jake.ginnivan.net/remembering-wpf-window-positions/</remarks>
+            </summary>
+        </member>
+        <member name="M:Libarius.WPF.WindowSettings.OnSaveInvalidated(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Called when Save is changed on an object.
+            </summary>
+        </member>
+        <member name="M:Libarius.WPF.WindowSettings.LoadWindowState">
+            <summary>
+                Load the Window Size Location and State from the settings object
+            </summary>
+        </member>
+        <member name="M:Libarius.WPF.WindowSettings.SaveWindowState">
+            <summary>
+                Save the Window Size, Location and State to the settings object
+            </summary>
+        </member>
+        <member name="F:Libarius.WPF.WindowSettings.SaveProperty">
+            <summary>
+                Register the "Save" attached property and the "OnSaveInvalidated" callback
+            </summary>
+        </member>
+    </members>
+</doc>

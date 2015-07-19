@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <!-- use main DLL version for installer -->
+  <?define VERSION = "!(bind.FileVersion.CentralisedOutlookSignature.dll)" ?>
+
+  <!-- basic product attributes -->
+  <Product Id="*" Name="Zentralisierte Signatur für Outlook" Language="1033" Version="$(var.VERSION)" Codepage="1250"
+           Manufacturer="Benjamin Höglinger" UpgradeCode="a63b712a-b109-4b6f-92a2-d839e1e68400">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <!-- use single MSI file only -->
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- set setup icon and uninstall options -->
+    <Icon Id="Outlook.ico" SourceFile="Outlook.ico" />
+    <Property Id="ARPPRODUCTICON" Value="Outlook.ico" />
+    <Property Id='ARPURLINFOABOUT' Value='http://nefarius.at' />
+    <Property Id='ARPNOMODIFY' Value='1' />
+
+    <!-- kill and restart processes using locked files -->
+    <Property Id='MSIDISABLERMRESTART' Value='0' />
+    <Property Id='MSIRMSHUTDOWN' Value='1' />
+
+    <!-- always perform major upgrade and remove previous versions -->
+    <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
+    <Upgrade Id="a63b712a-b109-4b6f-92a2-d839e1e68400">
+      <UpgradeVersion
+        Minimum="1.0.0.0" Maximum="99.0.0.0"
+        Property="PREVIOUSVERSIONSINSTALLED"
+        IncludeMinimum="yes" IncludeMaximum="no" />
+    </Upgrade>
+
+    <!-- remove old versions before installation continues -->
+    <InstallExecuteSequence>
+      <RemoveExistingProducts Before='InstallInitialize' />
+    </InstallExecuteSequence>
+
+    <!-- main feature to install -->
+    <Feature Id="ProductFeature" Title="Zentralisierte Signatur für Outlook" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CentralisedOutlookSignature.dll" />
+      <ComponentGroupRef Id="ScriptsComponents" />
+    </Feature>
+  </Product>
+
+  <!-- build installation path -->
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Zentralisierte Signatur für Outlook">
+          <Directory Id="SCRIPTS" Name="Scripts" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <!-- add additional binaries -->
+  <!-- generate native image during installation to improve performance -->
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="bf678e21-2832-48ed-b62b-5c53ac5d0e32">
+        <File Name="CentralisedOutlookSignature.dll.config" Source="$(var.CentralisedOutlookSignature.TargetDir)" />
+        <File Name="CentralisedOutlookSignature.RxDefinitions.dll"
+              Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_CentralisedOutlookSignature.RxDefinitions.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="Libarius.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_Libarius.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="log4net.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_log4net.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="NetOffice.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_NetOffice.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="OfficeApi.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_OfficeApi.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="OutlookApi.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_OutlookApi.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="protobuf-net.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_protobuf_net.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="ReactiveProtobuf.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_ReactiveProtobuf.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="ReactiveSockets.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_ReactiveSockets.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="System.Reactive.Core.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_System.Reactive.Core.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="System.Reactive.Interfaces.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_System.Reactive.Interfaces.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="System.Reactive.Linq.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_System.Reactive.Linq.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="System.Reactive.PlatformServices.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_System.Reactive.PlatformServices.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="VBIDEApi.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_VBIDEApi.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="WordApi.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_WordApi.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="CSScriptLibrary.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_CSScriptLibrary.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="Mono.CSharp.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_Mono.CSharp.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <File Name="INIFileParser.dll" Source="$(var.CentralisedOutlookSignature.TargetDir)">
+          <netfx:NativeImage Id="ngen_INIFileParser.dll" Platform="32bit" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+      </Component>
+    </ComponentGroup>
+    
+    <!-- add "Scripts" sub-directory inc. content -->
+    <ComponentGroup Id="ScriptsComponents" Directory="SCRIPTS">
+      <Component Id="TagDefinitions.cs">
+        <File Id="TagDefinitions.cs" Source="$(var.CentralisedOutlookSignature.TargetDir)Scripts\TagDefinitions.cs"
+              KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- register COM assembly -->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CentralisedOutlookSignature.dll" Guid="{641FAD08-33A4-4E4B-986A-13B5A6D78EAA}">
+        <Class Id="{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}" Context="InprocServer32"
+               Description="CentralisedOutlookSignature.Addin" ThreadingModel="both" Programmable="yes"
+               ForeignServer="[SystemFolder]mscoree.dll">
+          <ProgId Id="CentralisedOutlookSignature.Addin" Description="CentralisedOutlookSignature.Addin" />
+        </Class>
+        <Class Id="{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}" Context="InprocServer32"
+               Description="CentralisedOutlookSignature.MyTaskPane" ThreadingModel="both"
+               ForeignServer="[SystemFolder]mscoree.dll">
+          <ProgId Id="CentralisedOutlookSignature.MyTaskPane" Description="CentralisedOutlookSignature.MyTaskPane" />
+        </Class>
+        <File Id="CentralisedOutlookSignature.dll" KeyPath="yes" Source="$(var.CentralisedOutlookSignature.TargetPath)">
+          <netfx:NativeImage Id="ngen_CentralisedOutlookSignature.dll" Platform="32bit" Priority="0"
+                             AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+        <Interface Id="{000C0601-0000-0000-C000-000000000046}" Name="Office .NET Framework Lockback Bypass Key" />
+        <RegistryValue Root="HKCR"
+                       Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
+                       Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32\$(var.VERSION)"
+                       Name="Class" Value="CentralisedOutlookSignature.Addin" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32\$(var.VERSION)"
+                       Name="Assembly"
+                       Value="CentralisedOutlookSignature, Version=$(var.VERSION), Culture=neutral, PublicKeyToken=null"
+                       Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32\$(var.VERSION)"
+                       Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32\$(var.VERSION)"
+                       Name="CodeBase" Value="file:///[#CentralisedOutlookSignature.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32" Name="Class"
+                       Value="CentralisedOutlookSignature.Addin" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32" Name="Assembly"
+                       Value="CentralisedOutlookSignature, Version=$(var.VERSION), Culture=neutral, PublicKeyToken=null"
+                       Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32"
+                       Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{76CB6240-56A9-4E79-BC3F-D032DA7DBD17}\InprocServer32" Name="CodeBase"
+                       Value="file:///[#CentralisedOutlookSignature.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR"
+                       Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
+                       Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32\$(var.VERSION)"
+                       Name="Class" Value="CentralisedOutlookSignature.MyTaskPane" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32\$(var.VERSION)"
+                       Name="Assembly"
+                       Value="CentralisedOutlookSignature, Version=$(var.VERSION), Culture=neutral, PublicKeyToken=null"
+                       Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32\$(var.VERSION)"
+                       Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32\$(var.VERSION)"
+                       Name="CodeBase" Value="file:///[#CentralisedOutlookSignature.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32" Name="Class"
+                       Value="CentralisedOutlookSignature.MyTaskPane" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32" Name="Assembly"
+                       Value="CentralisedOutlookSignature, Version=$(var.VERSION), Culture=neutral, PublicKeyToken=null"
+                       Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32"
+                       Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C4CC2A78-34E9-3475-A002-0D9406BC1AC8}\InprocServer32" Name="CodeBase"
+                       Value="file:///[#CentralisedOutlookSignature.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Office\Outlook\AddIns\CentralisedOutlookSignature.Addin"
+                       Name="LoadBehavior" Value="3" Type="integer" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Office\Outlook\AddIns\CentralisedOutlookSignature.Addin"
+                       Name="FriendlyName" Value="Zentralisierte Signatur für Outlook" Type="string" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Office\Outlook\AddIns\CentralisedOutlookSignature.Addin"
+                       Name="Description" Value="Zentralisierte Signatur für Outlook" Type="string" Action="write" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

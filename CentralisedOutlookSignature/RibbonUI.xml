@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="OnLoadRibonUI">
+  <ribbon>
+    <tabs>
+      <tab id="CentralisedOutlookSignature" label="Signaturen">
+        <group id="group1" label="Zentralisierte Signaturen">
+          <button id="aboutButton" label="Über" imageMso="AdvertisePublishAs" size="large"
+                  onAction="AboutButton_Click"
+                  screentip="Über dieses Add-in" supertip="Zeigt ein Dialogfenster mit Informationen zu diesem Add-in." />
+          <button id="refreshButton" label="Aktualisieren" imageMso="Refresh" size="large"
+                  onAction="RefreshButton_Click"
+                  screentip="Signaturen aktualisieren"
+                  supertip="Erstellt die Signatur basierend auf einer zentralen Vorlage sofort." />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
