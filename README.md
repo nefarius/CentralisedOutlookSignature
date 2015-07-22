@@ -2,6 +2,15 @@
 ## Summary
 In progress :-)
 
+## Setup
+### Infrastructure requirements
+The Add-in is designed to fetch information about the currently logged on user from Microsoft® Active Directory. A working environment with ADDS and properly domain-joined machines is necessary. Also a network share on an arbitrary file server is needed to host the configuration file and signature templates. Read-only access is perfectly sufficient for Domain Users/Authorized Users.
+
+### Clients/Workstations
+The following additional software packages are required on all client machines:
+* [Microsoft® .NET Framework 4.5.1](http://www.microsoft.com/de-at/download/details.aspx?id=40779) (or newer)
+* Compatible version of Microsoft® Outlook (see "Compatibility")
+
 ## Compatibility
 The Add-in was tested successfully with these versions of Microsoft® Outlook:
 * 2007 32-Bit
